@@ -1,4 +1,5 @@
 <?php
+namespace App\Supports;
 /**
  * Website: http://sourceforge.net/projects/simplehtmldom/
  * Additional projects: http://sourceforge.net/projects/debugobject/

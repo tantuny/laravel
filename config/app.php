@@ -230,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'simple_html_dom' => App\Supports\simple_html_dom::class,
+        'HelpMethods' =>App\Supports\HelpMethods::class,
     ],
 
 ];

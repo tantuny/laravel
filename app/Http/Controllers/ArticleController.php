@@ -59,4 +59,8 @@ class ArticleController extends Controller
         Article::where('id', $request->id)->delete();
         return redirect()->route('dashboard');
     }
+    public static function dashboard(){
+        $articles = Article::all();
+        return view('pages.cmsArticles', ['articles'=>$articles]);
+    }
 }

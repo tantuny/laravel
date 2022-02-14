@@ -6,6 +6,7 @@ use App\Http\Controllers\ArticleController;
 use App\Supports\simple_html_dom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,19 +24,10 @@ Route::post('/addArticle', [ArticleController::class, 'addArticles'])->middlewar
 Route::get('/updateArticle/{id}', [ArticleController::class, 'updateArticle']);
 Route::get('/deleteArticle/{id}', [ArticleController::class, 'deliteArticle'] );
 
-Route::get('/deleteUser/{id}', function (Request $request){
-    User::where('id', $request->id)->delete();
-    return redirect()->route('users');
-});
-Route::get('/users', function(){
-$users= User::all();
-return view('pages.users' , ['users'=>$users]);
-})->middleware(['auth'])->name('users');
+Route::get('/deleteUser/{id}', [UserController:: class, 'deleteUser']);
+Route::get('/users',[UserController:: class, 'showUser'] )->middleware(['auth'])->name('users');
 
-Route::get('/dashboard', function () {
-    $articles = Article::all();
-    return view('pages.cmsArticles', ['articles'=>$articles]);
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard',[ArticleController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
 
 
 require __DIR__.'/auth.php';
